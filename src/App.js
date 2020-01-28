@@ -1,18 +1,15 @@
 import React from "react";
+import { Container, Box, Typography } from "@material-ui/core";
 
 const App = () => {
   return (
-    <div>
-      <header>
-        <h1>Rafi Barash's CSCI 5611 Portfolio</h1>
-      </header>
-      <div>
-        <ul>
-          <li>Item #1</li>
-          <li>Item #2</li>
-        </ul>
-      </div>
-    </div>
+    <Container maxWidth="sm">
+      <Box my={4}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Rafi Barash's CSCI 5611 Portfolio
+        </Typography>
+      </Box>
+    </Container>
   );
 };
 
