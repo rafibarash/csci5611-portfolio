@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/Game-Animation-and-Planning-Portfolio/static/js/main.aab0104c.chunk.js",
-    "main.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/main.aab0104c.chunk.js.map",
-    "runtime-main.js": "/Game-Animation-and-Planning-Portfolio/static/js/runtime-main.dfbc337f.js",
-    "runtime-main.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/runtime-main.dfbc337f.js.map",
-    "static/js/2.4f451715.chunk.js": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js",
-    "static/js/2.4f451715.chunk.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js.map",
-    "index.html": "/Game-Animation-and-Planning-Portfolio/index.html",
-    "precache-manifest.a044bc650f6500a7e609ec094f99ad17.js": "/Game-Animation-and-Planning-Portfolio/precache-manifest.a044bc650f6500a7e609ec094f99ad17.js",
-    "service-worker.js": "/Game-Animation-and-Planning-Portfolio/service-worker.js",
-    "static/js/2.4f451715.chunk.js.LICENSE": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js.LICENSE"
+    "main.js": "/csci5611-portfolio/static/js/main.aab0104c.chunk.js",
+    "main.js.map": "/csci5611-portfolio/static/js/main.aab0104c.chunk.js.map",
+    "runtime-main.js": "/csci5611-portfolio/static/js/runtime-main.289871f1.js",
+    "runtime-main.js.map": "/csci5611-portfolio/static/js/runtime-main.289871f1.js.map",
+    "static/js/2.4f451715.chunk.js": "/csci5611-portfolio/static/js/2.4f451715.chunk.js",
+    "static/js/2.4f451715.chunk.js.map": "/csci5611-portfolio/static/js/2.4f451715.chunk.js.map",
+    "index.html": "/csci5611-portfolio/index.html",
+    "precache-manifest.33e96df2cee9d227f2aec6540e71269d.js": "/csci5611-portfolio/precache-manifest.33e96df2cee9d227f2aec6540e71269d.js",
+    "service-worker.js": "/csci5611-portfolio/service-worker.js",
+    "static/js/2.4f451715.chunk.js.LICENSE": "/csci5611-portfolio/static/js/2.4f451715.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.dfbc337f.js",
+    "static/js/runtime-main.289871f1.js",
     "static/js/2.4f451715.chunk.js",
     "static/js/main.aab0104c.chunk.js"
   ]
