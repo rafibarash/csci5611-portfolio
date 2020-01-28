@@ -1,9 +1,9 @@
 const Metadata = {
-  title: "Particle System",
+  title: "Bouncing Ball in 3D",
   group: ["Rafi Barash, baras015@umn.edu"],
   description: `this project...`,
   code:
-    "https://github.com/rafibarash/csci5611-portfolio/tree/master/projects/proj1",
+    "https://github.com/rafibarash/csci5611-portfolio/tree/master/src/projects/proj1/BouncingBall_3D",
   videoLink: "#",
   featureList: ["0:10 - feature #1", "1:04 - feature #2"],
   imageList: ["#"],
