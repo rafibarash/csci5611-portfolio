@@ -24,6 +24,7 @@ const ProjectTabs = () => {
         value={value}
         onChange={handleChange}
         aria-label="Project Tabs"
+        indicatorColor="primary"
         className={classes.tabs}
       >
         {projectData.map((project, i) => (
