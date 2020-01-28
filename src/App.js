@@ -1,18 +1,16 @@
 import React from "react";
 import { Container, Box, Typography } from "@material-ui/core";
-
-// projects
-import Projects from "./projects";
+import ProjectTabs from "./components/ProjectTabs";
 
 const App = () => {
-  console.log(Projects);
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
+    <Container maxWidth="lg">
+      <Box my={4} textAlign="center">
+        <Typography variant="h3" component="h1" gutterBottom>
           Rafi Barash's CSCI 5611 Portfolio
         </Typography>
       </Box>
+      <ProjectTabs />
     </Container>
   );
 };
