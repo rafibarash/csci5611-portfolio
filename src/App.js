@@ -1,7 +1,11 @@
 import React from "react";
 import { Container, Box, Typography } from "@material-ui/core";
 
+// projects
+import Projects from "./projects";
+
 const App = () => {
+  console.log(Projects);
   return (
     <Container maxWidth="sm">
       <Box my={4}>
