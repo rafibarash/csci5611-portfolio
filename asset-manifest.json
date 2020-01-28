@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/Game-Animation-and-Planning-Portfolio/static/js/main.aab0104c.chunk.js",
+    "main.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/main.aab0104c.chunk.js.map",
+    "runtime-main.js": "/Game-Animation-and-Planning-Portfolio/static/js/runtime-main.dfbc337f.js",
+    "runtime-main.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/runtime-main.dfbc337f.js.map",
+    "static/js/2.4f451715.chunk.js": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js",
+    "static/js/2.4f451715.chunk.js.map": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js.map",
+    "index.html": "/Game-Animation-and-Planning-Portfolio/index.html",
+    "precache-manifest.a044bc650f6500a7e609ec094f99ad17.js": "/Game-Animation-and-Planning-Portfolio/precache-manifest.a044bc650f6500a7e609ec094f99ad17.js",
+    "service-worker.js": "/Game-Animation-and-Planning-Portfolio/service-worker.js",
+    "static/js/2.4f451715.chunk.js.LICENSE": "/Game-Animation-and-Planning-Portfolio/static/js/2.4f451715.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dfbc337f.js",
+    "static/js/2.4f451715.chunk.js",
+    "static/js/main.aab0104c.chunk.js"
+  ]
+}
