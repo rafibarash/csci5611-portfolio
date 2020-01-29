@@ -1,5 +1,5 @@
-import proj1CheckpointMetadata from "./proj1/checkpointMetadata";
+import checkpoint1Metadata from "./proj1/checkpointMetadata";
 
-const Projects = [proj1CheckpointMetadata];
+const Projects = [checkpoint1Metadata];
 
 export default Projects;

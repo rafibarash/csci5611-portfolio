@@ -1,32 +1,44 @@
 // Created for CSCI 5611
+// By Rafi Barash
 
-// Here is a simple processing program that demonstrates the central math used in the check-in
-// to create a bouncing ball. The ball is integrated with basic Eulerian integration.
-// The ball is subject to a simple PDE of constant downward acceleration  (by default, 
-// down is the positive y direction).
-
-// If you are new to processing, you can find an excellent tutorial that will quickly
-// introduce the key features here: https://processing.org/tutorials/p3d/
-
+// Globals
 String projectTitle = "Bouncing Ball";
-
-//Animation Principle: Store object & world state in external variables that are used by both
-//                     the drawing code and simulation code.
+PImage ballImg; 
+PShape sphere;
 PVector position, velocity, acceleration;
 float side = 600;
 float radius = 40;
 
-//Creates a 600x600 window for 3D graphics 
 void setup() {
  size(625, 625, P3D);
  noStroke(); //Question: What does this do?
+ ballImg = loadImage("basketball.jpeg");
  // set some values
+ sphere = createShape(SPHERE, 50); 
+ sphere.setTexture(ballImg);
  position = new PVector(width / 2, 200, 300);
- velocity = new PVector(20, 0, -15);
+ velocity = new PVector(15, 0, -2);
  acceleration = new PVector(0, 9.8, 0);
 }
 
-//Animation Principle: Separate Physical Update 
+void draw() {
+  float startFrame = millis(); //Time how long various components are taking
+  
+  //Compute the physics update
+  handleMouseCollision();
+  computePhysics(0.15); //Question: Should this be a fixed number?
+  float endPhysics = millis();
+  
+  drawScene();
+  float endFrame = millis();
+  
+  String runtimeReport = "Frame: "+str(endFrame-startFrame)+"ms,"+
+        " Physics: "+ str(endPhysics-startFrame)+"ms,"+
+        " FPS: "+ str(round(frameRate)) +"\n";
+  surface.setTitle(projectTitle+ "  -  " +runtimeReport);
+}
+
+// Compute physics update
 void computePhysics(float dt){
   // compute and update x values
   float[] updated_x = numericalIntegration(position.x, velocity.x, acceleration.x, dt);
@@ -97,29 +109,16 @@ void handleMouseCollision() {
 //Animation Principle: Separate Draw Code
 void drawScene(){
   background(255,255,255);
-  fill(0,200,10); 
+  //fill(0,200,10); 
+  
   lights();
   translate(position.x, position.y, position.z); 
-  sphere(radius);
+  //beginShape();
+  //texture(ballImg);
+  //sphere(radius);
+  //endShape();
+  shape(sphere);
 }
 
 //Main function which is called every timestep. Here we compute the new physics and draw the scene.
 //Additionally, we also compute some timing performance numbers.
-void draw() {
-  float startFrame = millis(); //Time how long various components are taking
-  
-  //Compute the physics update
-  handleMouseCollision();
-  computePhysics(0.15); //Question: Should this be a fixed number?
-  float endPhysics = millis();
-  
-  //Draw the scene
-  drawScene();
-  float endFrame = millis();
-  
-  String runtimeReport = "Frame: "+str(endFrame-startFrame)+"ms,"+
-        " Physics: "+ str(endPhysics-startFrame)+"ms,"+
-        " FPS: "+ str(round(frameRate)) +"\n";
-  surface.setTitle(projectTitle+ "  -  " +runtimeReport);
-  //print(runtimeReport);
-}

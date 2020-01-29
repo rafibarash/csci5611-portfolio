@@ -13,7 +13,11 @@ const TabPanel = ({ children, value, index, ...other }) => {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && (
+        <Box p={3} pt={1}>
+          {children}
+        </Box>
+      )}
     </Typography>
   );
 };
