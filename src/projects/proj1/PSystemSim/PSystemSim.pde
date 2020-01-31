@@ -5,7 +5,7 @@ boolean perspectiveMode = true, cameraMode = false;
 
 // Processing function to configure project
 void setup() {
-  size(1000, 1000, P3D);
+  size(1000, 600, P3D);
   noStroke();             // So objects don't look weird
   initScene();            // Fetch dragon resources
 }

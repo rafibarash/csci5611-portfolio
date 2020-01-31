@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Arrays;
+
 /******************************************
  * Globals
  *****************************************/
@@ -6,6 +9,8 @@ PShape dragon1, dragon2;
 float camX, camY, camZ = -150;
 Fire fire1;
 Water water1;
+Explosion explosion1;
+ArrayList<PVector> objectPositions;  // [dragon1, dragon2, fire1, water1, explosion1]
 
 /******************************************
  * Initialization
@@ -27,6 +32,15 @@ void initScene() {
   PVector water1InitVel = new PVector(300, 0, 0);
   float water1Radius = 80;
   water1 = new Water(water1GenRate, water1MaxLife, water1InitVel, water1Radius);
+  // Init object positions;
+  objectPositions = new ArrayList<PVector>();
+  PVector dragon1Pos = new PVector(camX + width - 10, camY + height/2 - 30, camZ);  // dragon1 position
+  PVector dragon2Pos = new PVector(camX + 10, camY + height/2 - 30, camZ);          // dragon2 position
+  PVector fire1Pos = new PVector(camX + width - 10, camY + height/7, camZ);         // fire1 position
+  PVector water1Pos = new PVector(camX + 10, camY + height/7, camZ);                // water1 position
+  PVector explosion1Pos = new PVector(width / 2, camY + height/7, camZ);            // explosion1 position
+  List<PVector> positions = Arrays.asList(dragon1Pos, dragon2Pos, fire1Pos, water1Pos, explosion1Pos);
+  objectPositions.addAll(positions);
 }
 
 /******************************************
@@ -77,9 +91,9 @@ void renderState() {
 // sets lighting
 void setLights() {
   // Fill me in
-  //lights();   // default lighting
+  lights();   // default lighting
   // ambientLight(r,g,b); object evenly lit on four sides
-  ambientLight(200, 200, 200);
+  //ambientLight(200, 200, 200);
   // directionalLight(r, g, b, x, y, z); object hit with light based on xyz direction vector, scatters in all directions
   //directionalLight(0, 255, 0, 1, 0, 0);
   // spotLight(); defined with rgb, xyz direction, xyz location, spotlight angle, concentration
@@ -135,10 +149,11 @@ void renderCharacters() {
 // draw dragon1
 void renderDragon1() {
   pushMatrix();
-  translate(camX + width - 10, camY + height/3, camZ);
+  translate(camX + width - 10, camY + height/2 - 30, camZ);
   //rotateX(135);
   rotateX(PI);        // make dragon upright
-  rotateY(-PI / 2);   // rotate dragon facing left
+  //rotateY(-PI / 2);   // rotate dragon facing left
+  rotateY(-5*PI / 8);
   //rotateY(PI);
   rotateZ(0);
   shape(dragon1, 0, 0, 200, 200);
@@ -149,10 +164,11 @@ void renderDragon1() {
 // draw dragon2
 void renderDragon2() {
   pushMatrix();
-  translate(camX + 10, camY + height/3, camZ);
+  translate(camX + 10, camY + height/2 - 30, camZ);
   //rotateX(135);
   rotateX(PI);        // make dragon upright
-  rotateY(PI / 2);    // rotate dragon facing right
+  //rotateY(PI / 2);    // rotate dragon facing right
+  rotateY(5*PI / 8);
   rotateZ(0);
   shape(dragon2, 0, 0, 200, 200);
   //dragon1.rotateY(0.01);

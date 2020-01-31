@@ -1,13 +1,13 @@
 import java.util.Random; 
 
-class Particle {
+abstract class Particle {
   PVector _pos;
   PVector _vel;
   PVector _acc;
   PVector _color;
   float _lifetime;
   
-  public Particle(PVector initVel, float radius, PVector initColor) {
+  Particle(PVector initVel, float radius, PVector initColor) {
     this._pos = randPointOnSquare(30, 30);    // rand pos within disk radius
     this._vel = pertubVelocity(10, initVel); // add noise to velocity
     this._acc = new PVector(0, 9.81, 0);    // gravity 
@@ -16,26 +16,29 @@ class Particle {
   }
   
   // Update particle motion, time, color
-  public void update(float dt, PVector colorUpdate) {
+  void update(float dt, PVector colorUpdate) {
     numericalIntegration(this._pos, this._vel, this._acc, dt);    // update particle motion
     this.handleCollisions();                                      // update motion on collisions
     this._lifetime += dt;                                         // update lifetime
     colorUpdate.mult(dt / this._lifetime);                        // normalize color update by lifetime
-    this._color.add(colorUpdate);                                 // update color
-    
+    setColor(PVector.add(this._color, colorUpdate));              // update color
   }
   
-  public PVector[] getMotion() {
+  PVector[] getMotion() {
     PVector[] motion = {this._pos, this._vel, this._acc};
     return motion;
   }
   
-  public PVector getPos() {
+  PVector getPos() {
     return this._pos;
   }
   
-  public PVector getColor() {
+  PVector getColor() {
     return this._color;
+  }
+  
+  void setColor(PVector newColor) {
+    this._color = newColor;
   }
   
   private void handleCollisions() {

@@ -11,25 +11,42 @@ abstract class ParticleSystem {
     this._genRate = genRate;
     this._maxLife = maxLife;
     this._initVel = initVel;
-    this._initColor = new PVector(255, 0, 0);      // red
     this._radius = radius;
+    this._initColor = new PVector(0, 0, 0);      // black by default
     this._particles = new ArrayList();
   }
   
+  // render all particles
   void renderParticles() {
     beginShape();
     for (Particle p : this._particles) {
-       PVector pos = p.getPos();
-       PVector colr = p.getColor();
-       noFill();
-       stroke(colr.x, colr.y, colr.z);
-       vertex(pos.x, pos.y, pos.z);
+       renderParticle(p);
     }
     endShape();
   }
   
-  // generates particles based on timestep and genRate
+  // render individual particle
+  void renderParticle(Particle p) {
+    PVector pos = p.getPos();
+     PVector colr = p.getColor();
+     noFill();
+     stroke(colr.x, colr.y, colr.z);
+     vertex(pos.x, pos.y, pos.z);
+  }
+  
+  // generate new particles
   void genParticles(float dt) {
+    // get num particles to generate
+    int genNumParticles = calculateGenNumParticles(dt);
+    // actually generate particles
+    for (int i = 0; i < genNumParticles; i++) {
+      Particle p = genParticle();
+      this._particles.add(p);
+    }
+  }
+  
+  // determine num particles to generate based on timestep and genRate
+  private int calculateGenNumParticles(float dt) {
     // generate particles equal to timestep * genRate
     double numParticles = dt * this._genRate;
     int numParticlesInt = (int) numParticles;
@@ -38,27 +55,44 @@ abstract class ParticleSystem {
     if (Math.random() < fracPart) {
       numParticlesInt++;
     }
-    // actually generate particles
-    for (int i = 0; i < numParticlesInt; i++) {
-      Particle p = new Particle(this._initVel.copy(), this._radius, this._initColor.copy());
-      this._particles.add(p);
-    }
+    return numParticlesInt;
   }
   
+  // generate individual particle
+  abstract Particle genParticle();
+  
   // Updates particle motion
-  void updateParticles(float dt, PVector colorUpdate) {
+  void updateParticles(float dt) {
     HashSet<Integer> deadParticles = new HashSet();
-    // loop through and update particles or mark as dead
+    // update particles or mark as dead
+    PVector colorUpdate = getColorUpdate();
+    updateOrKillParticles(dt, colorUpdate, deadParticles);
+    // set living particles
+    setLivingParticles(deadParticles);
+  }
+  
+  // Determines how color will update over time
+  PVector getColorUpdate() {
+    return new PVector(0, 0, 0);    // don't update color by default
+  }
+  
+  // updates living particles and adds dead particles to list
+  void updateOrKillParticles(float dt, PVector colorUpdate, HashSet<Integer> deadParticles) {
+    // loop through particles and update or mark as dead
     for (int i=0; i < this._particles.size(); i++) {
       Particle p = this._particles.get(i);
       if (p._lifetime < this._maxLife) {
         // particle still alive, update motion
-        p.update(dt, colorUpdate);
+        p.update(dt, colorUpdate.copy());
       } else {
         // particle is dead, kill it
         deadParticles.add(i);
       }
     }
+  }
+  
+  // Remove all dead particles from particles list
+  void setLivingParticles(HashSet<Integer> deadParticles) {
     // add live particles to new list
     ArrayList<Particle> liveParticles = new ArrayList();
     for (int i=0; i < this._particles.size(); i++) {
@@ -69,6 +103,8 @@ abstract class ParticleSystem {
     }
     this._particles = liveParticles;
   }
+  
+  
   
   
 }
