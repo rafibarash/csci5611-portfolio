@@ -8,10 +8,14 @@ class Fire extends ParticleSystem {
     super(og, PS_TYPE.FIRE, img);
   }
   
-  void addParticle() {
+  Fire(PVector og, PVector vel, PImage img, float genRate) {
+    super(og, vel, PS_TYPE.FIRE, img, genRate);
+  }
+  
+  void genParticle(PVector initVel) {
     float vx = randomGaussian()*0.3;
     float vy = randomGaussian()*0.3 - 1.0;
-    PVector vel = new PVector(vx, vy, 0);
+    PVector vel = new PVector(vx, vy, 0).add(initVel);
     if (img != null) {
       particles.add(new FireParticle(origin, vel, img));
     } else {
@@ -37,19 +41,12 @@ class FireParticle extends Particle {
   void render() {
     if (img != null) {
       imageMode(CENTER);
-      tint(0, lifespan);
+      tint(255,0,0, lifespan);
       image(img, pos.x, pos.y);
     } else {
-      float theta = map(pos.x,0,width,0,TWO_PI*2);
-      rectMode(CENTER);
-      fill(0,lifespan);
-      stroke(0,lifespan);
-      pushMatrix();
-      translate(pos.x,pos.y);
-      rotate(theta);
-      rect(0,0,8,8);
-      popMatrix();
+      noFill();
+      stroke(255, 0, 0);
+      vertex(pos.x, pos.y, pos.z);
     }
-    
   }
 }
