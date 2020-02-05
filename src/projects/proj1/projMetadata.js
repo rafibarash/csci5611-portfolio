@@ -6,7 +6,7 @@ const Metadata = {
   group: ["Rafi Barash (baras015@umn.edu)"],
   description: `
       This is my particle simulation for project #1. In this simulation, you can see a tree burning in the
-      bottom right, as well as a mouse controlled house that spits out water. The fire particles continuously check for
+      bottom right, as well as a continously controlled hose (via the mouse) that spits out water. The fire particles continuously check for
       collisions with the water particles, and turn into smoke upon collision. The water particles are rendered as
       vertices to speed up the animation, while the fire particles use a textured image. As you can see at the top 
       of the video, the second performance benchmark of 5,000 particles simulated and rendered at over 30 FPS was hit. I
@@ -18,7 +18,7 @@ const Metadata = {
   featureList: [
     "0:00 - Fire particles coming out of tree",
     "0:00 - Fire particles rendered with texture",
-    "0:03 - Water particles coming out of cursor",
+    "0:03 - Water particles continously coming out of cursor",
     "0:05 - Performance Benchmark #2 hit: 5,000 particles simulated and rendered at over 30 FPS",
     "0:08 - Water particles colliding with fire and causing fire particles to turn into smoke",
     "0:15 - 3D user controlled camera",
