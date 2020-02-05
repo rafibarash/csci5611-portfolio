@@ -5,48 +5,41 @@ enum PS_TYPE {
 }
 
 abstract class ParticleSystem {
-  ArrayList<Particle> particles;
+  ArrayList<Particle> particles = new ArrayList();
   PVector origin;
   PVector initVel = new PVector(0, 0, 0);
   PS_TYPE type;
   PImage img;
   float genRate = 1;
+  float lifespan;
   
-  ParticleSystem(PVector og, PS_TYPE type) {
+  /**
+   * Constructor Stuff
+   */
+   
+  ParticleSystem(PVector og, PS_TYPE t) {
     origin = og.copy();
-    particles = new ArrayList();
-    this.type = type;
+    type = t;
   }
   
-  ParticleSystem(PVector og, PS_TYPE type, float genRate) {
-    origin = og.copy();
-    particles = new ArrayList();
-    this.type = type;
-    this.genRate = genRate;
+  ParticleSystem withInitVel(PVector v) {
+    initVel = v.copy();
+    return this;
   }
   
-  ParticleSystem(PVector og, PS_TYPE type, PImage img) {
-    origin = og.copy();
-    particles = new ArrayList();
-    this.type = type;
-    this.img = img;
+  ParticleSystem withImg(PImage i) {
+    img = i;
+    return this;
   }
   
-  ParticleSystem(PVector og, PS_TYPE type, PImage img, float genRate) {
-    origin = og.copy();
-    particles = new ArrayList();
-    this.type = type;
-    this.img = img;
-    this.genRate = genRate;
+  ParticleSystem withGenRate(float r) {
+    genRate = r;
+    return this;
   }
   
-  ParticleSystem(PVector og, PVector vel, PS_TYPE type, PImage img, float genRate) {
-    origin = og.copy();
-    initVel = vel.copy();
-    particles = new ArrayList();
-    this.type = type;
-    this.img = img;
-    this.genRate = genRate;
+  ParticleSystem withLifespan(float l) {
+    lifespan = l;
+    return this;
   }
   
   // generate new particles
@@ -75,10 +68,10 @@ abstract class ParticleSystem {
   }
   
   // generate new particles and update particles
-  void update(float dt, ArrayList<ParticleSystem> otherSystems) {
+  void update(float dt) {
     genParticles(dt);
     for (Particle p : particles) {
-      p.update(dt, otherSystems);
+      p.update(dt);
     }
   }
   
@@ -116,12 +109,12 @@ abstract class ParticleSystem {
   }
   
   void pertubVelocity(PVector vec) {
-    PVector pertub = new PVector(random(-1, 1), random(-1, 1), 0);
+    PVector pertub = new PVector(random(-1, 1), random(-1, 1), random(-1, 1));
     vec.add(pertub);
   }
   
   // determine num particles to generate based on timestep and genRate
-  private int calculateGenNumParticles(float dt) {
+  protected int calculateGenNumParticles(float dt) {
     // generate particles equal to timestep * genRate
     double numParticles = dt * genRate;
     int numParticlesInt = (int) numParticles;

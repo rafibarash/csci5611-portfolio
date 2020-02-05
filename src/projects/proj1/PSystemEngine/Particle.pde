@@ -13,20 +13,19 @@ abstract class Particle {
     this.pos = pos.copy();
   }
   
-  Particle(PVector pos, PImage img) {
-    this.pos = pos.copy();
-    this.img = img;
-  }
-  
   Particle(PVector pos, PVector vel) {
     this.pos = pos.copy();
     this.vel = vel.copy();
   }
   
-  Particle(PVector pos, PVector vel, PImage img) {
-    this.pos = pos.copy();
-    this.vel = vel.copy();
-    this.img = img;
+  Particle withImg(PImage i) {
+    img = i;
+    return this;
+  }
+  
+  Particle withLifespan(float l) {
+    lifespan = l;
+    return this;
   }
   
   //void run(float dt) {
@@ -35,10 +34,10 @@ abstract class Particle {
   //}
   
   // Update particle motion, lifespan
-  void update(float dt, ArrayList<ParticleSystem> systems) {
+  void update(float dt) {
     numericalIntegration(pos, vel, acc, dt);
-    handleCollisions(systems);
-    lifespan -= 2;
+    handleCollisions();
+    lifespan -= dt;
   }
   
   // Renders particle
@@ -57,8 +56,8 @@ abstract class Particle {
     acc.add(PVector.div(force, mass));
   }
   
-  void handleCollisions(ArrayList<ParticleSystem> otherSystems) {
-    handleParticleCollisions(otherSystems);
+  void handleCollisions() {
+    //handleParticleCollisions(otherSystems);
     handleWallCollisions();
   }
   
@@ -112,16 +111,16 @@ abstract class Particle {
       pos.y = 0;
       vel.y *= -0.4;
     }
-    // handle left wall
-    else if (pos.x < 0) {
-      pos.x = 0;
-      vel.x *= -0.4;
-    }
-    // handle right wall
-    else if (pos.x > width) {
-      pos.x = width;
-      vel.x *= -0.4;
-    }
+    //// handle left wall
+    //else if (pos.x < 0) {
+    //  pos.x = 0;
+    //  vel.x *= -0.4;
+    //}
+    //// handle right wall
+    //else if (pos.x > width) {
+    //  pos.x = width;
+    //  vel.x *= -0.4;
+    //}
   }
   
   PVector randPointOnSquare(float w, float h) {

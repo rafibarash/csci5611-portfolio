@@ -4,23 +4,30 @@ class Fire extends ParticleSystem {
     super(og, PS_TYPE.FIRE);
   }
   
-  Fire(PVector og, PImage img) {
-    super(og, PS_TYPE.FIRE, img);
-  }
-  
-  Fire(PVector og, PVector vel, PImage img, float genRate) {
-    super(og, vel, PS_TYPE.FIRE, img, genRate);
-  }
-  
   void genParticle(PVector initVel) {
     float vx = randomGaussian()*0.3;
     float vy = randomGaussian()*0.3 - 1.0;
     PVector vel = new PVector(vx, vy, 0).add(initVel);
-    if (img != null) {
-      particles.add(new FireParticle(origin, vel, img));
-    } else {
-      particles.add(new FireParticle(origin));
+    FireParticle p = new FireParticle(origin, vel);
+    if (lifespan != 0) p = (FireParticle) p.withLifespan(lifespan);
+    if (img != null) p = (FireParticle) p.withImg(img);
+    particles.add(p);
+  }
+  
+  void render() {
+    Iterator<Particle> it = particles.iterator();
+    pushMatrix();
+    //translate(0, 0, 70);
+    beginShape(POINTS);
+    while (it.hasNext()) {
+      Particle p = it.next();
+      p.render();
+      if (p.isDead()) {
+         it.remove();
+      }
     }
+    endShape(POINTS);
+    popMatrix();
   }
 }
 
@@ -30,12 +37,8 @@ class FireParticle extends Particle {
     super(pos);
   }
   
-  FireParticle(PVector pos, PImage img) {
-    super(pos, img);
-  }
-  
-  FireParticle(PVector pos, PVector vel, PImage img) {
-    super(pos, vel, img);
+  FireParticle(PVector pos, PVector vel) {
+    super(pos, vel);
   }
   
   void render() {

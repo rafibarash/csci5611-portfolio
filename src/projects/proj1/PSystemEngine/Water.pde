@@ -4,21 +4,12 @@ class Water extends ParticleSystem {
     super(og, PS_TYPE.WATER);
   }
   
-  Water(PVector og, PImage img) {
-    super(og, PS_TYPE.WATER, img);
-  }
-  
-  Water(PVector og, PVector vel, PImage img, float genRate) {
-    super(og, vel, PS_TYPE.WATER, img, genRate);
-  }
-  
   void genParticle(PVector initVel) {
-    if (img != null) {
-      pertubVelocity(initVel);
-      particles.add(new WaterParticle(origin, initVel, img));
-    } else {
-      particles.add(new WaterParticle(origin));
-    }
+    pertubVelocity(initVel);
+    WaterParticle p = new WaterParticle(origin, initVel);
+    if (lifespan != 0) p = (WaterParticle) p.withLifespan(lifespan);
+    if (img != null) p = (WaterParticle) p.withImg(img);
+    particles.add(p);
   }
 }
 
@@ -28,12 +19,8 @@ class WaterParticle extends Particle {
     super(pos);
   }
   
-  WaterParticle(PVector pos, PImage img) {
-    super(pos, img);
-  }
-  
-  WaterParticle(PVector pos, PVector vel, PImage img) {
-    super(pos, vel, img);
+  WaterParticle(PVector pos, PVector vel) {
+    super(pos, vel);
   }
   
   void render() {

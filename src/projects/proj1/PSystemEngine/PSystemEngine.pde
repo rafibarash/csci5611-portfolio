@@ -14,11 +14,14 @@ void setup() {
   systems = new ArrayList();
   objects = new ArrayList();
   PImage textureImg = loadImage("texture.png");
-  PShape crate = loadShape("Crate.obj");
-  systems.add(new Fire(new PVector(width/2, height/1.2, camZ), new PVector(0, -1, 0), textureImg, 1));
-  systems.add(new Water(new PVector(width/5, height/3, camZ), new PVector(3, -2, 0), textureImg, 2));
-  objects.add(new Object(new PVector(width/1.5, height/2, camZ), crate));
-  rotateX(90);
+  PShape tree = loadShape("BirchTree_Autumn_1.obj");
+  // Create systems
+  Water wand = (Water) (new Water(new PVector(0, 0, 0)).withGenRate(17).withLifespan(340));
+  systems.add(wand);
+  Fire fire = (Fire) (new Fire(new PVector(width-150, height-100, 100)).withImg(textureImg).withGenRate(1.5).withLifespan(335));
+  systems.add(fire);
+  Object Tree = new Object(new PVector(width-150, height), tree);
+  objects.add(Tree);
 }
  
 // Processing function that is called every frame
@@ -28,34 +31,36 @@ void draw() {
   startFrame = millis();                // used for runtime report
   
   // Update State
-  ArrayList<ParticleSystem> collidingSystems = new ArrayList();
+  int numParticles = 0;
   for (ParticleSystem ps : systems) {
     if (ps.type == PS_TYPE.WATER) {
       // WATER
+      ps.origin.set(mouseX, mouseY, 0);
       PVector gravity = new PVector(0.0, 0.1, 0);
       ps.applyForce(gravity);
-      //collidingSystems = new ArrayList() {
-      //  { add(systems.get(0)); }  // fire ps
-      //};
     } else if (ps.type == PS_TYPE.FIRE) {
       // FIRE
-      //ps.applyRepeller(repeller);
-      //float dx = map(mouseX,0,width,-0.2,0.2);
-      //PVector wind = new PVector(dx,0, 0);
-      //ps.applyForce(wind);
-      //collidingSystems = new ArrayList() {
-      //  { add(systems.get(1)); }  // water ps
-      //};
+      PVector wind = new PVector(-0.01,0, 0);
+      ps.applyForce(wind);
     }
-    ps.update(elapsedTime / 10, collidingSystems);
-    
+    ps.update(elapsedTime / 10);
+    numParticles += ps.particles.size();
   }
   endPhysics = millis();               // used for runtime report
   
-  // Render State
-  background(255);
+  /************************************************
+   * Render State
+   ************************************************/
+  blendMode(ADD);
+  background(0);
+  lights();
   handlePerspective();
   Iterator<ParticleSystem> it = systems.iterator();
+  // Render Objects
+  for (Object o : objects) {
+    o.render();
+  }
+  // Render particles
   while (it.hasNext()) {
     ParticleSystem ps = it.next();
     ps.render();
@@ -63,16 +68,16 @@ void draw() {
        it.remove();
     }
   }
-  //for (Object o : objects) {
-  //  o.render();
-  //}
+  
   //repeller.render();
   endFrame = millis();                 // used for runtime report
   
   // Set display title with runtime report
-  String runtimeReport = "Frame: " + str(endFrame - startFrame) + "ms," +
+  String runtimeReport = 
+        //"Frame: " + str(endFrame - startFrame) + "ms," +
         " Physics: " + str(endPhysics - startFrame) + "ms," +
-        " FPS: " + str(round(frameRate)) + "\n";
+        " FPS: " + str(round(frameRate)) +
+        " Particles: " + str(round(numParticles)) + "\n";
   surface.setTitle(projectTitle+ "  -  " +runtimeReport);
 }
 
@@ -103,16 +108,16 @@ void handlePerspective() {
     } else if (rotateMode) {
       // ROTATE
       if (keyPressed && keyCode == UP) {
-        rotX -= PI/30;
+        rotX -= PI/40;
         // TODO: curve in as curving upwards (like viewing from a globe)
       } else if (keyPressed && keyCode == DOWN) {
-        rotX += PI/30;
+        rotX += PI/40;
         // TODO: curve down (like viewing from a globe)
       } else if (keyPressed && keyCode == RIGHT) {
-        rotY += PI/20;
+        rotY -= PI/40;
         // TODO: curve to right
       } else if (keyPressed && keyCode == LEFT) {
-        rotY -= PI/20;
+        rotY += PI/40;
         // TODO: curve to right
       }
     }

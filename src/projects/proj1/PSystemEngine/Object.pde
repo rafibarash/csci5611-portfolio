@@ -15,6 +15,11 @@ class Object {
   }
   
   void render() {
-    shape(shape, pos.x, pos.y, size.x, size.y);
+    pushMatrix();
+    translate(pos.x, pos.y);
+    scale(60);
+    rotateX(radians(180));
+    shape(shape);
+    popMatrix();
   }
 }
