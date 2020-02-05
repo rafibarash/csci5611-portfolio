@@ -60,10 +60,9 @@ abstract class ParticleSystem {
     }
   }
   
-  void applyRepeller(Repeller r) {
+  void handleCollisions(ParticleSystem ps) {
     for (Particle p: particles) {
-      PVector force = r.repel(p);
-      p.applyForce(force);
+      p.handleParticleCollisions(ps);
     }
   }
   
@@ -87,17 +86,6 @@ abstract class ParticleSystem {
     }
     endShape(POINTS);
   }
-  
-  //void run() {
-  //  Iterator<Particle> it = particles.iterator();
-  //  while (it.hasNext()) {
-  //    Particle p = it.next();
-  //    p.run();
-  //    if (p.isDead()) {
-  //       it.remove();
-  //    }
-  //  }
-  //}
   
   void kill() {
     particles = new ArrayList();

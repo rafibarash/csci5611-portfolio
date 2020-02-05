@@ -3,49 +3,49 @@ import java.util.Iterator;
 // GLOBALS
 String projectTitle = "Particle System";
 float startFrame, endFrame, endPhysics, elapsedTime;
-ArrayList<ParticleSystem> systems;
-ArrayList<Object> objects;
+Water water;
+Fire fire;
+Object Tree;
 boolean translateMode = true, rotateMode = false;
 float camX, camY, camZ, rotX, rotY, rotZ;
  
 // Processing function to configure project
 void setup() {
   size(800, 800, P3D);
-  systems = new ArrayList();
-  objects = new ArrayList();
   PImage textureImg = loadImage("texture.png");
   PShape tree = loadShape("BirchTree_Autumn_1.obj");
-  // Create systems
-  Water wand = (Water) (new Water(new PVector(0, 0, 0)).withGenRate(17).withLifespan(340));
-  systems.add(wand);
-  Fire fire = (Fire) (new Fire(new PVector(width-150, height-100, 100)).withImg(textureImg).withGenRate(1.5).withLifespan(335));
-  systems.add(fire);
-  Object Tree = new Object(new PVector(width-150, height), tree);
-  objects.add(Tree);
+  // Create systems and objects
+  water = (Water) (new Water(new PVector(0, 0, 0)).withGenRate(15).withLifespan(320));
+  fire = (Fire) (new Fire(new PVector(width-150, height-100, 100)).withImg(textureImg).withGenRate(1.5).withLifespan(250));
+  Tree = new Object(new PVector(width-150, height), tree);
 }
  
 // Processing function that is called every frame
 void draw() {
-  // Advance Time
+  /************************************************
+   * Advance Time
+   ************************************************/
   elapsedTime = millis() - startFrame;  // used for dt in state update
   startFrame = millis();                // used for runtime report
   
-  // Update State
+  /************************************************
+   * Update State
+   ************************************************/
   int numParticles = 0;
-  for (ParticleSystem ps : systems) {
-    if (ps.type == PS_TYPE.WATER) {
-      // WATER
-      ps.origin.set(mouseX, mouseY, 0);
-      PVector gravity = new PVector(0.0, 0.1, 0);
-      ps.applyForce(gravity);
-    } else if (ps.type == PS_TYPE.FIRE) {
-      // FIRE
-      PVector wind = new PVector(-0.01,0, 0);
-      ps.applyForce(wind);
-    }
-    ps.update(elapsedTime / 10);
-    numParticles += ps.particles.size();
-  }
+  float dt = elapsedTime / 10;
+  // WATER WAND
+  water.origin.set(mouseX, mouseY, 0);
+  PVector gravity = new PVector(0.0, 0.1, 0);
+  water.applyForce(gravity);
+  water.update(dt);
+  numParticles += water.particles.size();
+  // FIRE
+  PVector wind = new PVector(-0.01,0, 0);
+  fire.applyForce(wind);
+  fire.update(dt);
+  fire.handleCollisions(water);
+  numParticles += fire.particles.size();
+  
   endPhysics = millis();               // used for runtime report
   
   /************************************************
@@ -55,21 +55,15 @@ void draw() {
   background(0);
   lights();
   handlePerspective();
-  Iterator<ParticleSystem> it = systems.iterator();
   // Render Objects
-  for (Object o : objects) {
-    o.render();
-  }
+  Tree.render();
   // Render particles
-  while (it.hasNext()) {
-    ParticleSystem ps = it.next();
-    ps.render();
-    if (ps.isDead()) {
-       it.remove();
-    }
+  water.render();
+  if (water.isDead()) {
+    water.genRate = 0;
   }
+  fire.render();
   
-  //repeller.render();
   endFrame = millis();                 // used for runtime report
   
   // Set display title with runtime report

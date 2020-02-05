@@ -7,28 +7,14 @@ class Fire extends ParticleSystem {
   void genParticle(PVector initVel) {
     float vx = randomGaussian()*0.3;
     float vy = randomGaussian()*0.3 - 1.0;
-    PVector vel = new PVector(vx, vy, 0).add(initVel);
+    float vz = randomGaussian()*0.3;
+    PVector vel = new PVector(vx, vy, vz).add(initVel);
     FireParticle p = new FireParticle(origin, vel);
-    if (lifespan != 0) p = (FireParticle) p.withLifespan(lifespan);
+    if (lifespan != 0) p = (FireParticle) p.withLifespan(lifespan).withColor(new PVector(255,0,0));
     if (img != null) p = (FireParticle) p.withImg(img);
     particles.add(p);
   }
   
-  void render() {
-    Iterator<Particle> it = particles.iterator();
-    pushMatrix();
-    //translate(0, 0, 70);
-    beginShape(POINTS);
-    while (it.hasNext()) {
-      Particle p = it.next();
-      p.render();
-      if (p.isDead()) {
-         it.remove();
-      }
-    }
-    endShape(POINTS);
-    popMatrix();
-  }
 }
 
 class FireParticle extends Particle {
@@ -44,11 +30,11 @@ class FireParticle extends Particle {
   void render() {
     if (img != null) {
       imageMode(CENTER);
-      tint(255,0,0, lifespan);
+      tint(colr.x, colr.y, colr.z, lifespan);
       image(img, pos.x, pos.y);
     } else {
       noFill();
-      stroke(255, 0, 0);
+      stroke(colr.x, colr.y, colr.z);
       vertex(pos.x, pos.y, pos.z);
     }
   }
