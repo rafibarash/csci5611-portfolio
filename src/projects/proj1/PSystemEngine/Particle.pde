@@ -3,7 +3,7 @@ abstract class Particle {
   PVector vel = new PVector(random(-1, 1), random(-1, 1), 0);
   PVector acc = new PVector(0, 0, 0);
   float mass = 1;
-  float radius = 10;
+  float radius = 15;
   float lifespan = 255;
   PImage img;
   PVector colr = new PVector(0, 0, 0);
@@ -71,7 +71,7 @@ abstract class Particle {
   // Implemented using math from
   // https://studiofreya.com/3d-math-and-physics/simple-sphere-sphere-collision-detection-and-collision-response/
   void handleParticleCollision(Particle p) {
-    colr = new PVector(1, 1, 1);
+    colr = new PVector(0, 0, 1);
     // Create basis vector and normalize this
     //PVector vecx = PVector.sub(pos, p.pos);
     //normalize(vecx);

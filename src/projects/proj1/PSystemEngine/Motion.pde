@@ -32,6 +32,11 @@ PVector project(PVector p1, PVector p2) {
   return PVector.mult(p2, dotProduct(p1, p2));
 }
 
+// Bounce V - (1 + cor)B... cor = bounce coefficient
+PVector bounce(PVector p1, PVector projection, float cor) {
+  return PVector.sub(p1, PVector.mult(projection, 1 + cor));
+}
+
 // Normalizes vector - Finds vector in same direction with magnitude of 1
 PVector normalize(PVector p) {
   return PVector.div(p, magnitude(p));

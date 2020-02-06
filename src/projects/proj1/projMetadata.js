@@ -1,5 +1,6 @@
-import * as treeImgURL from "./proj_tree_burning.png";
-import * as smokeImgURL from "./proj_tree_smoking.png";
+// import * as treeImgURL from "./proj_tree_burning.png";
+import * as treeSmokeImgURL from "./proj_tree_smoking.png";
+import * as treeSmokeDistantImgURL from "./proj_tree_smoking_distant.png";
 
 const Metadata = {
   title: "Project #1 - Particle System",
@@ -24,8 +25,8 @@ const Metadata = {
     "0:15 - 3D user controlled camera",
   ],
   imageList: [
-    { url: treeImgURL, alt: "Tree burning" },
-    { url: smokeImgURL, alt: "Water causing tree fire to smoke" },
+    { url: treeSmokeDistantImgURL, alt: "Distant view of tree smoking" },
+    { url: treeSmokeImgURL, alt: "Close up view of tree smoking from fire" },
   ],
   tools: [{ title: "Processing", url: "https://processing.org/" }],
   otherResources: [

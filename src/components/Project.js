@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography, Paper, List, Link } from "@material-ui/core";
+import { Box, Typography, Paper, List, Link, Grid } from "@material-ui/core";
 import Video from "./Video";
 
 const Project = ({ project }) => {
@@ -60,22 +60,24 @@ const Project = ({ project }) => {
       </Section>
       <Section>
         <SectionHeader text="Images" />
-        <SectionList
-          list={imageList}
-          renderItem={({ url, alt }) => (
-            <>
-              <img src={url} alt={alt} className={classes.img} />
-              <Typography variant="subtitle2">{alt}</Typography>
-            </>
-          )}
-        />
+        <Grid container style={{ marginTop: "0.5rem" }}>
+          <SectionList
+            list={imageList}
+            renderItem={({ url, alt }) => (
+              <Grid key={url} item sm={6} style={{ marginBottom: "0.5rem 0" }}>
+                <img src={url} alt={alt} className={classes.img} />
+                <Typography variant="subtitle2">{alt}</Typography>
+              </Grid>
+            )}
+          />
+        </Grid>
       </Section>
       <Section>
         <SectionHeader text="Tools and Libraries" />
         <SectionList
           list={tools}
           renderItem={({ title, url }) => (
-            <Link href={url} target="_blank" rel="noreferrer">
+            <Link key={title} href={url} target="_blank" rel="noreferrer">
               {title}
             </Link>
           )}
@@ -86,10 +88,13 @@ const Project = ({ project }) => {
           <SectionHeader text="Additional Resources" />
           <SectionList
             list={otherResources}
-            renderItem={({ title, url }) => (
-              <Link href={url} target="_blank" rel="noreferrer">
-                {title}
-              </Link>
+            renderItem={({ title, url, description }) => (
+              <List key={title}>
+                <Link href={url} target="_blank" rel="noreferrer">
+                  {title}
+                </Link>
+                <Typography>{description}</Typography>
+              </List>
             )}
           />
         </Section>

@@ -30,6 +30,9 @@ class FireParticle extends Particle {
   void render() {
     if (img != null) {
       imageMode(CENTER);
+      if (random(1) < 0.01) {
+        colr = new PVector(1, 1, 1);
+      }
       tint(colr.x, colr.y, colr.z, lifespan);
       image(img, pos.x, pos.y);
     } else {

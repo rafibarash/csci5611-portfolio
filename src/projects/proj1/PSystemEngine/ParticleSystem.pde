@@ -11,7 +11,7 @@ abstract class ParticleSystem {
   PS_TYPE type;
   PImage img;
   float genRate = 1;
-  float lifespan;
+  float lifespan = 255;
   
   /**
    * Constructor Stuff

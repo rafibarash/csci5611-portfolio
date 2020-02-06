@@ -5,9 +5,9 @@ const Video = ({ url, title }) => (
     width="560"
     height="315"
     src={url}
-    frameborder="0"
+    frameBorder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
+    allowFullScreen
     title={title}
   />
 );

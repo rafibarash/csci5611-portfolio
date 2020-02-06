@@ -6,6 +6,8 @@ float startFrame, endFrame, endPhysics, elapsedTime;
 Water water;
 Fire fire;
 Object Tree;
+Object Moon;
+Object Wand;
 boolean translateMode = true, rotateMode = false;
 float camX, camY, camZ, rotX, rotY, rotZ;
  
@@ -14,10 +16,14 @@ void setup() {
   size(800, 800, P3D);
   PImage textureImg = loadImage("texture.png");
   PShape tree = loadShape("BirchTree_Autumn_1.obj");
+  PShape moon = loadShape("moon.obj");
+  PShape wand = loadShape("Staff - Harry Potter.obj");
   // Create systems and objects
-  water = (Water) (new Water(new PVector(0, 0, 0)).withGenRate(15).withLifespan(320));
-  fire = (Fire) (new Fire(new PVector(width-150, height-100, 100)).withImg(textureImg).withGenRate(1.5).withLifespan(250));
-  Tree = new Object(new PVector(width-150, height), tree);
+  water = (Water) (new Water(new PVector(0, 0, 0)).withInitVel(new PVector(3, -3, 0)).withGenRate(15).withLifespan(450));
+  fire = (Fire) (new Fire(new PVector(width-150, height-100, 200)).withImg(textureImg).withGenRate(1.5).withLifespan(300));
+  Wand = new Object(new PVector(0, 0, 0), wand, 40);
+  Tree = new Object(new PVector(width-150, height, 0), tree, 60);
+  Moon = new Object(new PVector(width, 0, -1000), moon, 1);
 }
  
 // Processing function that is called every frame
@@ -35,7 +41,7 @@ void draw() {
   float dt = elapsedTime / 10;
   // WATER WAND
   water.origin.set(mouseX, mouseY, 0);
-  PVector gravity = new PVector(0.0, 0.1, 0);
+  PVector gravity = new PVector(0.0, 0.2, 0);
   water.applyForce(gravity);
   water.update(dt);
   numParticles += water.particles.size();
@@ -43,7 +49,7 @@ void draw() {
   PVector wind = new PVector(-0.01,0, 0);
   fire.applyForce(wind);
   fire.update(dt);
-  fire.handleCollisions(water);
+  //fire.handleCollisions(water);
   numParticles += fire.particles.size();
   
   endPhysics = millis();               // used for runtime report
@@ -57,6 +63,12 @@ void draw() {
   handlePerspective();
   // Render Objects
   Tree.render();
+  Moon.render();
+  //pushMatrix();
+  //translate(mouseX, mouseY);
+  //rotateX(radians(180));
+  //Wand.render();
+  //popMatrix();
   // Render particles
   water.render();
   if (water.isDead()) {

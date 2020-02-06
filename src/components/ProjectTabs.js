@@ -8,7 +8,6 @@ import Project from "./Project";
 import projectData from "../projects";
 
 const ProjectTabs = () => {
-  console.log(projectData);
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
