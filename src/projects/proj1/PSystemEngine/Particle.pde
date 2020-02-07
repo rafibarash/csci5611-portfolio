@@ -3,10 +3,11 @@ abstract class Particle {
   PVector vel = new PVector(random(-1, 1), random(-1, 1), 0);
   PVector acc = new PVector(0, 0, 0);
   float mass = 1;
-  float radius = 15;
+  float radius = 6;
   float lifespan = 255;
   PImage img;
   PVector colr = new PVector(0, 0, 0);
+  boolean isDead = false;
   
   Particle(PVector pos) {
     this.pos = pos.copy();
@@ -47,7 +48,7 @@ abstract class Particle {
   }
   
   boolean isDead() {
-    if (lifespan <= 0) return true;
+    if (lifespan <= 0 || isDead) return true;
     return false;
   }
   
@@ -67,31 +68,9 @@ abstract class Particle {
     float d = distance(pos, p.pos);
     return d < (radius + p.radius);
   }
-  
-  // Implemented using math from
-  // https://studiofreya.com/3d-math-and-physics/simple-sphere-sphere-collision-detection-and-collision-response/
+
   void handleParticleCollision(Particle p) {
-    colr = new PVector(0, 0, 1);
-    // Create basis vector and normalize this
-    //PVector vecx = PVector.sub(pos, p.pos);
-    //normalize(vecx);
-    //// Calculate x-direction velocity vector and perpendicular y-vector for this particle.
-    //PVector vecv1 = vel.copy();
-    //float x1 = dotProduct(vecv1, vecx);
-    //PVector vecv1x = PVector.mult(vecx, x1);
-    //PVector vecv1y = PVector.sub(vecv1, vecv1x);
-    //float m1 = mass;
-    //// Calculate x-direction velocity vector and perpendicular y-vector for other particle.
-    //vecx  = PVector.mult(vecx, -1);
-    //PVector vecv2 = p.vel.copy();
-    //float x2 = dotProduct(vecv2, vecx);
-    //PVector vecv2x = PVector.mult(vecx, x2);
-    //PVector vecv2y = PVector.sub(vecv2, vecv2x);
-    //float m2 = p.mass;
-    //// Use newton's laws to obtain speed... F=Ma dawg
-    //vel = PVector.add(PVector.add(PVector.mult(vecv1x, (m1-m2)/(m1+m2)), PVector.mult(vecv2x, (2*m2)/(m1+m2))), vecv1y);
-    //p.vel = PVector.add(PVector.add(PVector.mult(vecv1x, (2*m1)/(m1+m2)), PVector.mult(vecv2x, (m2-m1)/(m1+m2))), vecv2y);
-    
+    isDead = true;
   }
   
   private void handleWallCollisions() {

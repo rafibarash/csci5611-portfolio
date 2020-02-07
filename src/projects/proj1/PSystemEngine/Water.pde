@@ -30,6 +30,7 @@ class WaterParticle extends Particle {
     } else {
       noFill();
       stroke(0, 153, 204);
+      //vertex(pos.x, pos.y, pos.z);
       vertex(pos.x, pos.y);
     }
   }

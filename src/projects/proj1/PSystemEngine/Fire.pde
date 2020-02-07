@@ -7,7 +7,8 @@ class Fire extends ParticleSystem {
   void genParticle(PVector initVel) {
     float vx = randomGaussian()*0.3;
     float vy = randomGaussian()*0.3 - 1.0;
-    float vz = randomGaussian()*0.3;
+    //float vz = randomGaussian()*0.3;
+    float vz = 0;
     PVector vel = new PVector(vx, vy, vz).add(initVel);
     FireParticle p = new FireParticle(origin, vel);
     if (lifespan != 0) p = (FireParticle) p.withLifespan(lifespan).withColor(new PVector(255,0,0));
@@ -30,7 +31,7 @@ class FireParticle extends Particle {
   void render() {
     if (img != null) {
       imageMode(CENTER);
-      if (random(1) < 0.01) {
+      if (random(1) < 0.002) {
         colr = new PVector(1, 1, 1);
       }
       tint(colr.x, colr.y, colr.z, lifespan);

@@ -64,9 +64,14 @@ const Project = ({ project }) => {
           <SectionList
             list={imageList}
             renderItem={({ url, alt }) => (
-              <Grid key={url} item sm={6} style={{ marginBottom: "0.5rem 0" }}>
+              <Grid key={url} item sm={6}>
                 <img src={url} alt={alt} className={classes.img} />
-                <Typography variant="subtitle2">{alt}</Typography>
+                <Typography
+                  variant="subtitle2"
+                  style={{ marginBottom: "1.5rem" }}
+                >
+                  {alt}
+                </Typography>
               </Grid>
             )}
           />

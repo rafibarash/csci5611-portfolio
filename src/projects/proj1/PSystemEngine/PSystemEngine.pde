@@ -7,21 +7,18 @@ Water water;
 Fire fire;
 Object Tree;
 Object Moon;
-Object Wand;
 boolean translateMode = true, rotateMode = false;
-float camX, camY, camZ, rotX, rotY, rotZ;
+float camX=0, camY=0, camZ, rotX, rotY, rotZ;
  
 // Processing function to configure project
 void setup() {
-  size(800, 800, P3D);
+  size(600, 600, P3D);
   PImage textureImg = loadImage("texture.png");
   PShape tree = loadShape("BirchTree_Autumn_1.obj");
   PShape moon = loadShape("moon.obj");
-  PShape wand = loadShape("Staff - Harry Potter.obj");
   // Create systems and objects
-  water = (Water) (new Water(new PVector(0, 0, 0)).withInitVel(new PVector(3, -3, 0)).withGenRate(15).withLifespan(450));
-  fire = (Fire) (new Fire(new PVector(width-150, height-100, 200)).withImg(textureImg).withGenRate(1.5).withLifespan(300));
-  Wand = new Object(new PVector(0, 0, 0), wand, 40);
+  water = (Water) (new Water(new PVector(0, 0, 0)).withInitVel(new PVector(3, -3, 0)).withGenRate(30).withLifespan(165));
+  fire = (Fire) (new Fire(new PVector(width-150, height-100, 0)).withImg(textureImg).withGenRate(1.5).withLifespan(150));
   Tree = new Object(new PVector(width-150, height, 0), tree, 60);
   Moon = new Object(new PVector(width, 0, -1000), moon, 1);
 }
@@ -38,18 +35,18 @@ void draw() {
    * Update State
    ************************************************/
   int numParticles = 0;
-  float dt = elapsedTime / 10;
+  float dt = elapsedTime / 35;
   // WATER WAND
-  water.origin.set(mouseX, mouseY, 0);
-  PVector gravity = new PVector(0.0, 0.2, 0);
+  water.origin.set(mouseX, mouseY);
+  PVector gravity = new PVector(0.0, 0.6, 0);
   water.applyForce(gravity);
   water.update(dt);
   numParticles += water.particles.size();
   // FIRE
-  PVector wind = new PVector(-0.01,0, 0);
+  PVector wind = new PVector(-0.02, 0, 0);
   fire.applyForce(wind);
   fire.update(dt);
-  //fire.handleCollisions(water);
+  fire.handleCollisions(water);
   numParticles += fire.particles.size();
   
   endPhysics = millis();               // used for runtime report
@@ -57,18 +54,25 @@ void draw() {
   /************************************************
    * Render State
    ************************************************/
-  blendMode(ADD);
   background(0);
   lights();
+  blendMode(ADD);
   handlePerspective();
+  // draw floor
+  //beginShape();
+  //fill(0, 255, 0);
+  //vertex(0, height, 0);
+  //fill(0, 255, 0);
+  //vertex(0, height, -800);
+  //fill(0, 255, 0);
+  //vertex(800, height, 0);
+  //fill(0, 255, 0);
+  //vertex(800, height, -800);
+  //endShape(CLOSE);
+  
   // Render Objects
   Tree.render();
   Moon.render();
-  //pushMatrix();
-  //translate(mouseX, mouseY);
-  //rotateX(radians(180));
-  //Wand.render();
-  //popMatrix();
   // Render particles
   water.render();
   if (water.isDead()) {
@@ -81,7 +85,7 @@ void draw() {
   // Set display title with runtime report
   String runtimeReport = 
         //"Frame: " + str(endFrame - startFrame) + "ms," +
-        " Physics: " + str(endPhysics - startFrame) + "ms," +
+        //" Physics: " + str(endPhysics - startFrame) + "ms," +
         " FPS: " + str(round(frameRate)) +
         " Particles: " + str(round(numParticles)) + "\n";
   surface.setTitle(projectTitle+ "  -  " +runtimeReport);
@@ -89,10 +93,10 @@ void draw() {
 
 // binds view of scene to arrow keys
 void handlePerspective() {
-  translate(camX, camY, camZ);
   rotateX(rotX);
   rotateY(rotY);
   rotateZ(rotZ);
+  translate(camX, camY, camZ);
   if (keyPressed) {
     // handle zoom
     if (key == '=') {
