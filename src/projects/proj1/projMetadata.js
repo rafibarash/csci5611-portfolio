@@ -18,7 +18,7 @@ const Metadata = {
       were only implemented in 2D, as I was unable to figure out how to add texture to a 3D sphere.
       `,
   code:
-    "https://github.com/rafibarash/csci5611-portfolio/tree/master/src/projects/proj1/PSystemEngine",
+    "https://github.com/rafibarash/csci5611/tree/master/projects/proj1/PSystemEngine",
   videoLink: "https://www.youtube.com/embed/KCLLm187Hok",
   featureList: [
     "0:00 - Fire particles coming out of tree",

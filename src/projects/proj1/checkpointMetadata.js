@@ -7,7 +7,7 @@ const Metadata = {
   The ball's movements are computed using Eulerian Numerical Integration.
   Whenever the mouse hits the ball with some velocity, the ball will move according to the direction and magnitude of the hit.`,
   code:
-    "https://github.com/rafibarash/csci5611-portfolio/tree/master/src/projects/proj1/BouncingBall_3D",
+    "https://github.com/rafibarash/csci5611/tree/master/projects/proj1/BouncingBall_3D",
   videoLink: "https://www.youtube.com/embed/FP6W6uRTXOc",
   featureList: [
     "0:06 - Ball changes direction off wall collision",
