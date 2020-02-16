@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.js": "/csci5611-portfolio/static/js/main.95f1d70b.chunk.js",
-    "main.js.map": "/csci5611-portfolio/static/js/main.95f1d70b.chunk.js.map",
+    "main.js": "/csci5611-portfolio/static/js/main.79d92772.chunk.js",
+    "main.js.map": "/csci5611-portfolio/static/js/main.79d92772.chunk.js.map",
     "runtime-main.js": "/csci5611-portfolio/static/js/runtime-main.289871f1.js",
     "runtime-main.js.map": "/csci5611-portfolio/static/js/runtime-main.289871f1.js.map",
-    "static/js/2.0e4112fe.chunk.js": "/csci5611-portfolio/static/js/2.0e4112fe.chunk.js",
-    "static/js/2.0e4112fe.chunk.js.map": "/csci5611-portfolio/static/js/2.0e4112fe.chunk.js.map",
+    "static/js/2.d0f9adcb.chunk.js": "/csci5611-portfolio/static/js/2.d0f9adcb.chunk.js",
+    "static/js/2.d0f9adcb.chunk.js.map": "/csci5611-portfolio/static/js/2.d0f9adcb.chunk.js.map",
     "index.html": "/csci5611-portfolio/index.html",
-    "precache-manifest.86db53fa0838c8278bda162ab20fc3cf.js": "/csci5611-portfolio/precache-manifest.86db53fa0838c8278bda162ab20fc3cf.js",
+    "precache-manifest.2659ba335d6173b678b802357790ca49.js": "/csci5611-portfolio/precache-manifest.2659ba335d6173b678b802357790ca49.js",
     "service-worker.js": "/csci5611-portfolio/service-worker.js",
-    "static/js/2.0e4112fe.chunk.js.LICENSE": "/csci5611-portfolio/static/js/2.0e4112fe.chunk.js.LICENSE",
+    "static/js/2.d0f9adcb.chunk.js.LICENSE": "/csci5611-portfolio/static/js/2.d0f9adcb.chunk.js.LICENSE",
     "static/media/checkpoint_01_bouncing_ball.png": "/csci5611-portfolio/static/media/checkpoint_01_bouncing_ball.c63dc387.png",
+    "static/media/foldingCloth.png": "/csci5611-portfolio/static/media/foldingCloth.6b9834e4.png",
     "static/media/proj_tree_smoking.png": "/csci5611-portfolio/static/media/proj_tree_smoking.edb0d877.png",
     "static/media/proj_tree_smoking_distant.png": "/csci5611-portfolio/static/media/proj_tree_smoking_distant.a577a2a0.png",
     "static/media/proj_water_evaporating_fire1.png": "/csci5611-portfolio/static/media/proj_water_evaporating_fire1.fef8e242.png",
-    "static/media/proj_water_evaporating_fire2.png": "/csci5611-portfolio/static/media/proj_water_evaporating_fire2.f86347b5.png"
+    "static/media/proj_water_evaporating_fire2.png": "/csci5611-portfolio/static/media/proj_water_evaporating_fire2.f86347b5.png",
+    "static/media/stableCloth.png": "/csci5611-portfolio/static/media/stableCloth.fb918feb.png"
   },
   "entrypoints": [
     "static/js/runtime-main.289871f1.js",
-    "static/js/2.0e4112fe.chunk.js",
-    "static/js/main.95f1d70b.chunk.js"
+    "static/js/2.d0f9adcb.chunk.js",
+    "static/js/main.79d92772.chunk.js"
   ]
 }
