@@ -1,74 +1,42 @@
-// import * as foldingClothImg from "./foldingCloth.png";
-// import * as stableClothImg from "./stableCloth.png";
+import * as fluidImg from "./fluid.png";
 
 const Metadata = {
   title: "Project #2 - Fluid Simulation",
   group: ["Tien Dinh (dinh0080@umn.edu)", "Rafi Barash (baras015@umn.edu)"],
   description: `
-      This is our fluid simulation for project #2. In this simulation, you can see 
+      This is our 2D Eulerian fluid simulation for project #2. We were motivated by
+      fluid dynamics and how incompressible fluid flows in a medium. Therefore, we decided
+      to implement this simulation. Our simulation relies heavily on Stam's implementation
+      in his GDC paper Real-Time Fluid Dynamics for Games. 
       `,
   code:
     "https://github.com/rafibarash/csci5611/tree/master/projects/proj2/FluidSimulationMain",
-  videoLink: "",
+  videoLink: "https://www.youtube.com/embed/hquSqXGp8yg",
   featureList: [
-    // "0:00 - Gravity causing cloth to deviate from starting position",
-    // "0:12 - Cloth stabilizes due to dampening effect",
+    "2D Eulerian Fluid Simulation",
+    "Mouse-based user interaction",
+    "The simulation can be paused with the 'v' button",
+    "200x200 grid benchmarking at 30+ FPS",
   ],
-  imageList: [
-    // {
-    //   url: foldingClothImg,
-    //   alt: "Folded cloth, picture taken at beginning of simulation",
-    // },
-    // {
-    //   url: stableClothImg,
-    //   alt:
-    //     "More stable cloth, picture taken later in simulation from result of dampening",
-    // },
-  ],
+  imageList: [{ url: fluidImg, alt: "Fluid dissipating" }],
   tools: [{ title: "Processing", url: "https://processing.org/" }],
   otherResources: [
-    // {
-    //   title: "Rotation (Spring) Lecture Slides (from class)",
-    //   url: "https://canvas.umn.edu/courses/158159/modules/items/3572277",
-    //   description: `
-    //   We used these lecture slides to first understand the physics behind how a
-    //   spring works.
-    //   `,
-    // },
-    // {
-    //   title: "Cloth Simulation Reference Slides",
-    //   url: "https://www.cs.umd.edu/class/fall2019/cmsc828X/LEC/Wei_Cloth.pdf",
-    //   description: `
-    //   We used these lecture slides to better understand the physics behind springs, and
-    //   to create our first attempt at a cloth simulation.
-    //   `,
-    // },
-    // {
-    //   title: "Sample Camera Code (from class)",
-    //   url: "https://canvas.umn.edu/courses/158159/modules/items/3578341",
-    //   description: `
-    //   We used the sample camera given to us on canvas for our camera library... Realizing now that
-    //   we did not show our camera functionality in the check-in video... oops
-    //   `,
-    // },
-    // {
-    //   title: "Triple Spring Code (from class)",
-    //   url: "https://canvas.umn.edu/courses/158159/modules/items/3577748",
-    //   description: `
-    //   We used the triple spring code given to us on canvas to better understand how we can apply spring
-    //   physics in Processing.
-    //   `,
-    // },
-    // {
-    //   title: "Nature of Code Chapter 5 - Physics Libraries",
-    //   url: "https://natureofcode.com/book/chapter-5-physics-libraries/",
-    //   description: `
-    //   We used this resource to imagine how we could create our cloth/spring
-    //   system in an object oriented fashion, loosely basing our Spring and Point classes
-    //   off how we imagined the Verlet Physics library would implement it's classes. This inspired
-    //   our final implementation of the cloth simulation checkpoint.
-    //   `,
-    // },
+    {
+      title: "Real-Time Fluid Dynamics for Games",
+      url:
+        "https://pdfs.semanticscholar.org/847f/819a4ea14bd789aca8bc88e85e906cfc657c.pdf",
+      description: `
+      Our implementation relies heavily on Stam's implementation, the only
+      different is his implementation is in C++, and our is in Processing.
+      `,
+    },
+    {
+      title: "Fluid Simulation for Dummies",
+      url: "https://www.mikeash.com/pyblog/fluid-simulation-for-dummies.html",
+      description: `
+      We also look at Ash's implementation of Stam's paper, but in 3D.
+      `,
+    },
   ],
 };
 
