@@ -7,16 +7,15 @@ const Metadata = {
   group: ["Rafi Barash (baras015@umn.edu)"],
   description: `
       This is my check in for project #3. In this simulation, you can see a triangle
-      agent in the bottom left of the world moving towards the goal in the top left
-      while avoiding the circular obstacle in the middle of the world. A probabilistic
-      roadmap with 10 samples was constructed for path planning from the agent's initial
-      position towards the goal, and path smoothing was utilized to push the agent towards
+      agent in the bottom left of the world moving towards the goal in the top right
+      while avoiding the circular obstacle in the middle. A probabilistic
+      roadmap (PRM) with 10 samples was constructed for path planning from the agent's initial
+      position towards the goal. There seems to be a small bug with how I create edges that avoid the circle 
+      in the middle, causing some possible edges to not be created. I also added path smoothing to push the agent towards
       the goal when no obstacles were in the way. The PRM was used to guide the agent's direction,
       and in each update call a force is applied in that direction. Because of this, when the 
       agent spots the goal, rather than immediately changing direction and heading 
-      straight towards the goal, the agent moves towards the goal in a more curved fashion. Also,
-      there seems to be a small bug with how my PRM implementation creates edges that avoid the circle 
-      in the middle.
+      straight towards the goal, the agent moves towards the goal in a more curved fashion.
       `,
   code:
     "https://github.com/rafibarash/csci5611/tree/master/projects/proj3/SearchCheckpoint",
