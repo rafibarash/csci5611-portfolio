@@ -1,5 +1,6 @@
 import * as pathSmoothingSearchingImg from "./searching_with_path_smoothing.png";
 import * as dumbSearchImg from "./unintelligent_searching.png";
+import * as graphWithEdgesImg from "./graph_with_edges.png";
 
 const Metadata = {
   title: "Checkpoint #3 - Motion Planning",
@@ -13,18 +14,22 @@ const Metadata = {
       the goal when no obstacles were in the way. The PRM was used to guide the agent's direction,
       and in each update call a force is applied in that direction. Because of this, when the 
       agent spots the goal, rather than immediately changing direction and heading 
-      straight towards the goal, the agent moves towards the goal in a more curved fashion.
+      straight towards the goal, the agent moves towards the goal in a more curved fashion. Also,
+      there seems to be a small bug with how my PRM implementation creates edges that avoid the circle 
+      in the middle.
       `,
   code:
     "https://github.com/rafibarash/csci5611/tree/master/projects/proj3/SearchCheckpoint",
-  videoLink: "https://www.youtube.com/embed/JdsOns69bRk",
+  videoLink: "https://www.youtube.com/embed/6bo3tcm9erQ",
   featureList: [
-    "0:05 - Sampled points for PRM visualized, agent moving towards a random point it shares an edge with",
-    "0:09 - Path Smoothing towars goal",
-    "0:14 - Agent reaches goal",
-    "0:22 - Agent randomly chose point near top of world, able to path smooth straigh to goal",
-    "0:33 - Agent randomly chose bad point with no edges other than initial position, had to go back to initial position and try again",
-    "0:38 - Agent chooses better point that allows path smoothing towards goal",
+    "0:03 - Sampled points and edges for PRM visualized, agent moving towards a random point it shares an edge with",
+    "0:06 - Path Smoothing towards goal",
+    "0:12 - Agent reaches goal",
+    "0:17 - Agent randomly choses random point, can't smooth towards goal yet",
+    "0:22 - Agent randomly choses bad point away from goal",
+    "0:30 - Agent randomly chooses 3rd bad point",
+    "0:41 - Agent finally able to smooth path towards goal",
+    "0:50 - Sorry for how slow this is, I store lots of snapshots of the agent's past positions and I have to render past positions as circles because when I tried rendering the path with points the edge lines kept blocking it.",
   ],
   imageList: [
     {
@@ -34,6 +39,10 @@ const Metadata = {
     {
       url: dumbSearchImg,
       alt: "Lack of intelligent searching in PRM path planning",
+    },
+    {
+      url: graphWithEdgesImg,
+      alt: "Edges in PRM graph visualized",
     },
   ],
   tools: [{ title: "Processing", url: "https://processing.org/" }],
