@@ -10,9 +10,7 @@ const Project = ({ project }) => {
     group,
     description,
     code,
-    videoLink,
-    featureList,
-    imageList,
+    videos,
     tools,
     otherResources,
   } = project;
@@ -43,8 +41,48 @@ const Project = ({ project }) => {
           {code}
         </Link>
       </Section>
+      <SectionList
+        list={videos}
+        renderItem={video => <VideoSection video={video} />}
+      />
       <Section>
-        <SectionHeader text="Video" />
+        <SectionHeader text="Tools and Libraries" />
+        <SectionList
+          list={tools}
+          renderItem={({ title, url }) => (
+            <Link key={title} href={url} target="_blank" rel="noreferrer">
+              {title}
+            </Link>
+          )}
+        />
+      </Section>
+      {otherResources && (
+        <Section>
+          <SectionHeader text="Additional Resources" />
+          <SectionList
+            list={otherResources}
+            renderItem={({ title, url, description }) => (
+              <List key={title}>
+                <Link href={url} target="_blank" rel="noreferrer">
+                  {title}
+                </Link>
+                <Typography>{description}</Typography>
+              </List>
+            )}
+          />
+        </Section>
+      )}
+    </Paper>
+  );
+};
+
+const VideoSection = ({ video }) => {
+  const classes = useStyles();
+  const { videoLink, title, featureList, imageList } = video;
+  return (
+    <>
+      <Section>
+        <SectionHeader text={title} />
         <Video url={videoLink} title={title} />
       </Section>
       <Section>
@@ -77,34 +115,7 @@ const Project = ({ project }) => {
           />
         </Grid>
       </Section>
-      <Section>
-        <SectionHeader text="Tools and Libraries" />
-        <SectionList
-          list={tools}
-          renderItem={({ title, url }) => (
-            <Link key={title} href={url} target="_blank" rel="noreferrer">
-              {title}
-            </Link>
-          )}
-        />
-      </Section>
-      {otherResources && (
-        <Section>
-          <SectionHeader text="Additional Resources" />
-          <SectionList
-            list={otherResources}
-            renderItem={({ title, url, description }) => (
-              <List key={title}>
-                <Link href={url} target="_blank" rel="noreferrer">
-                  {title}
-                </Link>
-                <Typography>{description}</Typography>
-              </List>
-            )}
-          />
-        </Section>
-      )}
-    </Paper>
+    </>
   );
 };
 

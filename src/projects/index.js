@@ -7,8 +7,10 @@ import clothSimMetadata from "./proj2/clothSimMetadata";
 import fluidSimMetadata from "./proj2/fluidSimMetadata";
 // Project 3
 import checkpoint3Metadata from "./proj3/checkpointMetadata";
+import motionPlanningMetadata from "./proj3/motionPlanningMetadata";
 
 const Projects = [
+  motionPlanningMetadata,
   checkpoint3Metadata,
   clothSimMetadata,
   fluidSimMetadata,
