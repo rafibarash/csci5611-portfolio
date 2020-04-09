@@ -10,38 +10,43 @@ const Metadata = {
       agent in the bottom left of the world moving towards the goal in the top right
       while avoiding the circular obstacle in the middle. A probabilistic
       roadmap (PRM) with 10 samples was constructed for path planning from the agent's initial
-      position towards the goal. There seems to be a small bug with how I create edges that avoid the circle 
+      position towards the goal. There seems to be a small bug with how I create edges that avoid the circle
       in the middle, causing some possible edges to not be created. I also added path smoothing to push the agent towards
       the goal when no obstacles were in the way. The PRM was used to guide the agent's direction,
-      and in each update call a force is applied in that direction. Because of this, when the 
-      agent spots the goal, rather than immediately changing direction and heading 
+      and in each update call a force is applied in that direction. Because of this, when the
+      agent spots the goal, rather than immediately changing direction and heading
       straight towards the goal, the agent moves towards the goal in a more curved fashion.
       `,
   code:
     "https://github.com/rafibarash/csci5611/tree/master/projects/proj3/SearchCheckpoint",
-  videoLink: "https://www.youtube.com/embed/6bo3tcm9erQ",
-  featureList: [
-    "0:03 - Sampled points and edges for PRM visualized, agent moving towards a random point it shares an edge with",
-    "0:06 - Path Smoothing towards goal",
-    "0:12 - Agent reaches goal",
-    "0:17 - Agent randomly choses random point, can't smooth towards goal yet",
-    "0:22 - Agent randomly choses bad point away from goal",
-    "0:30 - Agent randomly chooses 3rd bad point",
-    "0:41 - Agent finally able to smooth path towards goal",
-    "0:50 - Sorry for how slow this is, I store lots of snapshots of the agent's past positions and I have to render past positions as circles because when I tried rendering the path with points the edge lines kept blocking it.",
-  ],
-  imageList: [
+  videos: [
     {
-      url: pathSmoothingSearchingImg,
-      alt: "PRM path planning with path smoothing",
-    },
-    {
-      url: dumbSearchImg,
-      alt: "Lack of intelligent searching in PRM path planning",
-    },
-    {
-      url: graphWithEdgesImg,
-      alt: "Edges in PRM graph visualized",
+      title: "Search Checkpoint",
+      videoLink: "https://www.youtube.com/embed/6bo3tcm9erQ",
+      featureList: [
+        "0:03 - Sampled points and edges for PRM visualized, agent moving towards a random point it shares an edge with",
+        "0:06 - Path Smoothing towards goal",
+        "0:12 - Agent reaches goal",
+        "0:17 - Agent randomly choses random point, can't smooth towards goal yet",
+        "0:22 - Agent randomly choses bad point away from goal",
+        "0:30 - Agent randomly chooses 3rd bad point",
+        "0:41 - Agent finally able to smooth path towards goal",
+        "0:50 - Sorry for how slow this is, I store lots of snapshots of the agent's past positions and I have to render past positions as circles because when I tried rendering the path with points the edge lines kept blocking it.",
+      ],
+      imageList: [
+        {
+          url: pathSmoothingSearchingImg,
+          alt: "PRM path planning with path smoothing",
+        },
+        {
+          url: dumbSearchImg,
+          alt: "Lack of intelligent searching in PRM path planning",
+        },
+        {
+          url: graphWithEdgesImg,
+          alt: "Edges in PRM graph visualized",
+        },
+      ],
     },
   ],
   tools: [{ title: "Processing", url: "https://processing.org/" }],
@@ -82,7 +87,7 @@ const Metadata = {
       url:
         "https://bobobobo.wordpress.com/2008/01/07/solving-linear-equations-ax-by-c-0/",
       description: `
-      I followed this blogpost to solve the linear equation "Ax + By + C = 0" from two points, 
+      I followed this blogpost to solve the linear equation "Ax + By + C = 0" from two points,
       for use inside my "Obstacle.isCollision(vec1, vec2)" function.
       `,
     },
@@ -91,7 +96,7 @@ const Metadata = {
       url:
         "https://www.geeksforgeeks.org/check-line-touches-intersects-circle/",
       description: `
-      I followed this page to implement my check to see if a circle intersects with a line, 
+      I followed this page to implement my check to see if a circle intersects with a line,
       for use inside my "Obstacle.isCollision(vec1, vec2)" function... Think my implementation
       has a couple small bugs though.
       `,

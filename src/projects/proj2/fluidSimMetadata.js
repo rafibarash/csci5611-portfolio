@@ -7,18 +7,23 @@ const Metadata = {
       This is our 2D Eulerian fluid simulation for project #2. We were motivated by
       fluid dynamics and how incompressible fluid flows in a medium. Therefore, we decided
       to implement this simulation. Our simulation relies heavily on Stam's implementation
-      in his GDC paper Real-Time Fluid Dynamics for Games. 
+      in his GDC paper Real-Time Fluid Dynamics for Games.
       `,
   code:
     "https://github.com/rafibarash/csci5611/tree/master/projects/proj2/FluidSimulationMain",
-  videoLink: "https://www.youtube.com/embed/hquSqXGp8yg",
-  featureList: [
-    "2D Eulerian Fluid Simulation",
-    "Mouse-based user interaction",
-    "The simulation can be paused with the 'v' button",
-    "200x200 grid benchmarking at 30+ FPS",
+  videos: [
+    {
+      title: "Fluid Simulation",
+      videoLink: "https://www.youtube.com/embed/hquSqXGp8yg",
+      featureList: [
+        "2D Eulerian Fluid Simulation",
+        "Mouse-based user interaction",
+        "The simulation can be paused with the 'v' button",
+        "200x200 grid benchmarking at 30+ FPS",
+      ],
+      imageList: [{ url: fluidImg, alt: "Fluid dissipating" }],
+    },
   ],
-  imageList: [{ url: fluidImg, alt: "Fluid dissipating" }],
   tools: [{ title: "Processing", url: "https://processing.org/" }],
   otherResources: [
     {
